@@ -32,15 +32,27 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 export default {
+  methods: {
+    ...mapActions([
+      'login'
+    ]),
+    async onSubmit() {
+      const result = await this.login(this.userId);
+      if(result) {
+        this.$router.push('chat');
+      }
+    },
+  },
   name: "login-form",
   data() {
     return {
       userId: ""
     };
   },
+  
   computed: {
     isValid: function() {
       const result = this.userId.length < 3;
@@ -48,6 +60,7 @@ export default {
     },
     ...mapState(["loading", "error"]),
     ...mapGetters(["hasError"])
-  }
+  },
+  
 };
 </script>
