@@ -4,6 +4,7 @@
     <hr />
     <b-form @submit.prevent="onSubmit">
       <b-alert variant="danger" :show="hasError">{{ error }}</b-alert>
+
       <b-form-group id="userInputGroup" label="User Name" label-for="userInput">
         <b-form-input
           id="userInput"
@@ -15,6 +16,7 @@
           required
         ></b-form-input>
       </b-form-group>
+
       <b-button
         type="submit"
         variant="primary"
@@ -30,27 +32,22 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "login-form",
   data() {
     return {
-      userId: '',
-    }
+      userId: ""
+    };
   },
   computed: {
     isValid: function() {
-      const result = this.userId.length > 3;
+      const result = this.userId.length < 3;
       return result ? result : this.loading;
     },
-    ...mapState([
-      "loading",
-      "error"
-    ]),
-    ...mapGetters([
-      "hasError"
-    ])
+    ...mapState(["loading", "error"]),
+    ...mapGetters(["hasError"])
   }
-}
+};
 </script>

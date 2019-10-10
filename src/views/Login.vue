@@ -2,12 +2,12 @@
   <div class="login">
     <b-jumbotron
       header="Vue.js Chat"
-      lead="Powered by ChatKit SDK and Bootstrap-Vue"
+      lead="Powered by Chatkit SDK and Bootstrap-Vue"
       bg-variant="info"
       text-variant="white"
     >
       <p>For more information visit website:</p>
-      <b-btn target="blank" href="https://pusher.com/chatkit">More Info</b-btn>
+      <b-btn target="_blank" href="https://pusher.com/chatkit">More Info</b-btn>
     </b-jumbotron>
     <b-container>
       <b-row>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import LoginForm from "@/components/LoginForm.vue";
+
 export default {
   name: "login",
   components: {
