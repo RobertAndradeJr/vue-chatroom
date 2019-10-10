@@ -1,6 +1,6 @@
 import { ChatManager, TokenProvider } from "@pusher/chatkit-client";
-import moment from 'moment'
-import store from './store/index'
+import moment from "moment";
+import store from "./store/index";
 
 const INSTANCE_LOCATOR = process.env.VUE_APP_INSTANCE_LOCATOR;
 const TOKEN_URL = process.env.VUE_APP_TOKEN_URL;
@@ -28,27 +28,27 @@ async function sendMessage(text) {
 }
 
 async function subscribeToRoom(roomId) {
-  store.commit('clearChatRoom');
+  store.commit("clearChatRoom");
   activeRoom = await currentUser.subscribeToRoom({
     roomId,
     messageLimit: MESSAGE_LIMIT,
     hooks: {
       onMessage: message => {
-        store.commit('addMessage', {
+        store.commit("addMessage", {
           name: message.sender.name,
           username: message.senderId,
           text: message.text,
-          date: moment(message.createdAt).format('h:mm:ss a D-MM-YYYY')
+          date: moment(message.createdAt).format("h:mm:ss a D-MM-YYYY")
         });
       },
       onPresenceChanged: () => {
         setMembers();
       },
       onUserStartedTyping: user => {
-        store.commit('setUserTyping', user.id)
+        store.commit("setUserTyping", user.id);
       },
       onUserStoppedTyping: () => {
-        store.commit('setUserTyping', null)
+        store.commit("setUserTyping", null);
       }
     }
   });
@@ -70,7 +70,7 @@ function setMembers() {
     name: user.name,
     presence: user.presence.state
   }));
-  store.commit('setUsers', members);
+  store.commit("setUsers", members);
 }
 
 export default {
