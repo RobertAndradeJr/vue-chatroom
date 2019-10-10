@@ -2,7 +2,11 @@
   <div class="message-list">
     <h4>Messages</h4>
     <hr />
-    <div id="chat-messages" class="message-group" v-chat-scroll="{smooth: true}">
+    <div
+      id="chat-messages"
+      class="message-group"
+      v-chat-scroll="{ smooth: true }"
+    >
       <div class="message" v-for="(message, index) in messages" :key="index">
         <div class="clearfix">
           <h4 class="message-title">{{ message.name }}</h4>
@@ -15,7 +19,9 @@
       </div>
     </div>
     <div class="user-typing">
-      <small class="text-muted" v-if="userTyping">@{{ userTyping }} is typing....</small>
+      <small class="text-muted" v-if="userTyping">
+        @{{ userTyping }} is typing....
+      </small>
     </div>
   </div>
 </template>
